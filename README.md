@@ -33,6 +33,7 @@ This is a learning project intended to create a CLI tool that simulates a coffee
 ### 📖 Docs:
 
 - You must use one of the listed beverages.
+- To generate a report on available supplies type "report".
 - To turn off the vending machine type "off" 😉.
 
 ### 🤝 Credits:

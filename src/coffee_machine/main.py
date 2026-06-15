@@ -1,21 +1,21 @@
 from .cli import console
-from . import data
-
+from . import inventory
 
 def main():
-    menu_items = "/".join(data.MENU)
+    menu = inventory.get_menu()
 
     with console.screen():
         console.show_cursor(True)
 
         while True:
-            choice = console.input(f"What would you like? [magenta]({menu_items})[/]: ").lower()
+            choice = console.input(f"What would you like? [magenta]({menu})[/]: ").lower()
 
             match choice:
-                case coffee if coffee in data.MENU:
+                case coffee if coffee in inventory.data.MENU:
                     # TODO: Serve selected coffee to user.
                     console.print(f"Served {choice} to user.")
-                    pass
+                case "report":
+                    console.print(inventory.get_report())
                 case "off":
                     console.spinner("Turning off coffee machine.")
                     return

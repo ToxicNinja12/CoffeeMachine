@@ -1,0 +1,32 @@
+from .cli import console
+from . import data
+
+
+def get_menu():
+    """Return string of available menu items separated by '/'."""
+    return "/".join(data.MENU)
+
+
+def get_report():
+    """Return formatted table containing information of remaining ingredients and balance in vending machine."""
+    to_display = data.resources.copy()
+    balance = 0  # TODO: Calculate balance from change received.
+
+    # Adding units to amount.
+    for key in to_display:
+        if key == "coffee":
+            unit = "g"
+        else:
+            unit = "ml"
+        to_display[key] = str(to_display[key]) + f" {unit}"
+
+    # Formatting resource names.
+    for key in to_display:
+        to_display[key.capitalize()] = to_display.pop(key)
+
+    return console.table(
+        to_display,
+        title_text="Inventory Report",
+        header=("resource", "amt"),
+        caption_text=f"Balance ${balance:.2f}"
+    )
