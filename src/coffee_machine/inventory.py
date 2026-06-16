@@ -10,7 +10,7 @@ def get_menu():
 
 def get_available_resources():
     """Return amount of ingredients in vending machine."""
-    return data.resources
+    return data.resources.copy()
 
 
 def get_report():
@@ -45,3 +45,9 @@ def get_ingredient(drink):
 def get_cost(drink):
     """Return price of the drink."""
     return data.MENU[drink]["cost"]
+
+
+def update_resources(resources):
+    """Update amount of resources in vending machine."""
+    for resource in resources:
+        data.resources[resource] = resources[resource]
