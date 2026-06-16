@@ -1,5 +1,6 @@
 from .cli import console
 from . import data
+from .transaction import get_balance
 
 
 def get_menu():
@@ -15,7 +16,6 @@ def get_available_resources():
 def get_report():
     """Return formatted table containing information of remaining ingredients and balance in vending machine."""
     to_display = data.resources.copy()
-    balance = 0  # TODO: Calculate balance from change received.
 
     # Adding units to amount.
     for key in to_display:
@@ -32,8 +32,8 @@ def get_report():
     return console.table(
         to_display,
         title_text="Inventory Report",
-        header=("resource", "amt"),
-        caption_text=f"Balance ${balance:.2f}"
+        header=("resource", "amount"),
+        caption_text=f"Balance: ${get_balance():.2f}"
     )
 
 

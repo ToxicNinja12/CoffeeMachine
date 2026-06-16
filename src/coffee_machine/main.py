@@ -13,7 +13,7 @@ def main():
 
             match choice:
                 case coffee if coffee in inventory.data.MENU:
-                    transaction.process_order(coffee, [1, 2, 3])
+                    transaction.process_order(coffee)
                 case "report":
                     console.print(inventory.get_report())
                 case "off":
