@@ -5,6 +5,11 @@ from rich.spinner import Spinner
 from rich.table import Table
 
 
+def _error(message):
+    """Display an error formatted message."""
+    console.print(f"[red]{message}[/red]")
+
+
 def _spinner(message):
     """Display a loading message with a spinner."""
     spinner = Spinner("line", f"[yellow]{message}[/yellow]", style="yellow")
@@ -24,5 +29,6 @@ def _table(entries, title_text, caption_text, header=("key", "value")):
     return table
 
 console = Console()
+console.error = _error
 console.spinner = _spinner
 console.table = _table

@@ -1,5 +1,6 @@
 from .cli import console
-from . import inventory
+from . import inventory, transaction
+
 
 def main():
     menu = inventory.get_menu()
@@ -12,15 +13,14 @@ def main():
 
             match choice:
                 case coffee if coffee in inventory.data.MENU:
-                    # TODO: Serve selected coffee to user.
-                    console.print(f"Served {choice} to user.")
+                    transaction.process_order(coffee, [1, 2, 3])
                 case "report":
                     console.print(inventory.get_report())
                 case "off":
                     console.spinner("Turning off coffee machine.")
                     return
                 case _:
-                    console.print("[red]Please enter an option listed above.[/]")
+                    console.error("Please enter an option listed above")
 
 
 if __name__ == "__main__":
